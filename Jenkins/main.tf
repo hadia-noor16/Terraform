@@ -33,13 +33,11 @@ resource "aws_security_group" "tf_jenkins_sg" {
 }
 
 resource "aws_instance" "jenkins-ec2" {
-  ami           = "ami-0fff1b9a61dec8a5f"
-  instance_type = "t3.micro"
-  vpc_security_group_ids = [
-    "tf_jenkins_sg"
-  ]
-  key_name  = aws_key_pair.key_pair.key_name
-  user_data = "user_data.sh"
+  ami                    = "ami-0fff1b9a61dec8a5f"
+  instance_type          = "t3.micro"
+  vpc_security_group_ids = [aws_security_group.tf_jenkins_sg.id]
+  key_name               = aws_key_pair.key_pair.key_name
+  user_data              = file("user_data.sh")
   tags = {
     Name = "jenkins-ec2"
   }
