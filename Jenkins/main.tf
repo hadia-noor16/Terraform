@@ -1,3 +1,6 @@
+provider "aws" {
+    region=var.aws_region
+}
 # Creating securoty group to open SSH port from your IP, port 8080 to open for all traffic and allowing all outbound traffic
 resource "aws_security_group" "tf_jenkins_sg" {
   name        = "tf_jenkins_sg"
