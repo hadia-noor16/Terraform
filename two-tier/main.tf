@@ -189,11 +189,11 @@ resource "aws_security_group" "EC2SG" {
   description = "Security Group for EC2 webservers for two tier infrastructure"
   vpc_id      = aws_vpc.two-tier-vpc.id
   ingress {
-    cidr_blocks = ["0.0.0.0/0"]
+    #cidr_blocks = ["0.0.0.0/0"]
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    #security_groups =aws_security_group.alb-sg.id
+    security_groups =[aws_security_group.alb-sg.id]
   }
   egress {
     cidr_blocks = ["0.0.0.0/0"]
@@ -279,7 +279,7 @@ resource "aws_lb_target_group" "my_tg" {
     port                = 80
     healthy_threshold   = 5
     unhealthy_threshold = 2
-    timeout             = 3
+    timeout             = 5
     protocol            = "HTTP"
     matcher             = "200,202"
   }
