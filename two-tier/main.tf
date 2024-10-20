@@ -283,7 +283,7 @@ resource "aws_lb_target_group" "my_tg" {
     protocol            = "HTTP"
     matcher             = "200,202"
   }
-  lifecycle { create_before_destroy=true }
+  #lifecycle { create_before_destroy=true }
 }
 # In order to register EC2 insatnces to the TG, we need to add TG arn to the autoscaling group
 #I did that change in ASG setting above.
