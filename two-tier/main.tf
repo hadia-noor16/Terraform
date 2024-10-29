@@ -274,12 +274,12 @@ resource "aws_lb_target_group" "my_tg" {
   target_type = "instance"
 
   health_check {
-    interval            = 30
+    interval            = 20
     path                = "/"
     port                = 80
     healthy_threshold   = 5
     unhealthy_threshold = 2
-    timeout             = 5
+    timeout             = 3
     protocol            = "HTTP"
     matcher             = "200,202"
   }
